@@ -2,10 +2,7 @@ package com.ec.apis.easycontacts.controllers;
 
 import com.ec.apis.easycontacts.domain.Group;
 import com.ec.apis.easycontacts.domain.GroupMember;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GroupController {
@@ -14,20 +11,27 @@ public class GroupController {
     static Group testGroup;
 
     @GetMapping("groups")
-    public Group groups()
+    public Group allGroups()
     {
         return new Group();
     }
 
-    @GetMapping("members")
-    public GroupMember members(@RequestParam(value = "name", defaultValue = "dummy person") String gn)
+    @GetMapping("groups/{group_id}")
+    public Group getGroupByID(@PathVariable String group_id)
+    {
+        return new Group(group_id);
+    }
+
+    @GetMapping("groups/{group_id}/members")
+    public GroupMember getMemberByGroup(@PathVariable String group_id,
+                                  @RequestParam(value = "name", defaultValue = "dummy person") String gn)
     {
         testMember = new GroupMember(gn);
         return testMember;
     }
 
-    @PostMapping("members")
-    public void members()
+    @PostMapping("groups/{group_id}/members")
+    public void getAllMembersByGroup()
     {
         testMember = new GroupMember("dummdyDoo");
     }
