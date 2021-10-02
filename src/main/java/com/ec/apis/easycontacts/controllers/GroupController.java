@@ -23,10 +23,19 @@ public class GroupController {
     }
 
     @GetMapping("groups/{group_id}/members")
-    public GroupMember getMemberByGroup(@PathVariable String group_id,
-                                  @RequestParam(value = "name", defaultValue = "dummy person") String gn)
+    public GroupMember getAllMemberInGroup(@PathVariable String group_id,
+                                  @RequestParam(value = "name", defaultValue = "all dymmy persons") String gn)
     {
         testMember = new GroupMember(gn);
+        return testMember;
+    }
+
+    @GetMapping("groups/{group_id}/members/{member_id}")
+    public GroupMember getMemberInGroupByID(@PathVariable String group_id,
+                                            @PathVariable long member_id,
+                                            @RequestParam(value = "name", defaultValue = "dummy person") String gn)
+    {
+        testMember = new GroupMember(Long.toString(member_id));
         return testMember;
     }
 
