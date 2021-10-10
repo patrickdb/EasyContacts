@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class GroupController {
 
+    // https://blog.testproject.io/2020/07/15/running-postman-tests-in-ci-using-newman/
     static GroupMember testMember;
     static Group testGroup;
 
