@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Group {
     private String name;
-    private List<GroupMember> members;
+    private List<Member> members;
 
     public Group() {
         name = "<empty>";
@@ -14,5 +14,5 @@ public class Group {
     }
 
     public String getName() { return name; }
-    public List<GroupMember> getMembers() { return members; }
+    public List<Member> getMembers() { return members; }
 }
