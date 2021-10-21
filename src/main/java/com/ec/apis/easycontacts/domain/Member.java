@@ -30,13 +30,19 @@ public class Member {
     private String lastName;
 
     @Getter
-    @Setter
+    @Setter(AccessLevel.PROTECTED)
     private boolean visible;
 
+    @Getter
+    @Setter
     private List<MemberContacts> parents;
 
     public Member(String inputFirstName) {
         firstName = inputFirstName;
+    }
+
+    // When missing, JSON deserialization is not working (Needs c'tor with empty params)
+    public Member() {
     }
 
 }
