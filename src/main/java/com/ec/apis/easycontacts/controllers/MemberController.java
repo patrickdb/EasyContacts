@@ -13,7 +13,7 @@ public class MemberController {
     @PostMapping("/Members")
     public void CreateNewMemberRecord(@RequestBody Member newMember)
     {
-       ms.create(newMember);
+       ms.add(newMember);
     }
 
     @GetMapping("/Members/{member_id}")

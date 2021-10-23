@@ -37,12 +37,21 @@ public class Member {
     @Setter
     private List<MemberContacts> parents;
 
-    public Member(String inputFirstName) {
-        firstName = inputFirstName;
+    private void initialize()
+    {
+        firstName = "";
+        lastName = "";
+        visible = false;
     }
 
     // When missing, JSON deserialization is not working (Needs c'tor with empty params)
     public Member() {
+        initialize();
+    }
+
+    public Member(String inputFirstName)  {
+        initialize();
+        firstName = inputFirstName;
     }
 
 }
