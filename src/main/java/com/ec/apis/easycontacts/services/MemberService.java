@@ -12,7 +12,7 @@ public class MemberService {
 
     ArrayList<Member> allMembers = new ArrayList<>();
 
-    private boolean memberWithSameFirstAndLastNameExist(Member memberToMatch)
+    private boolean memberWithSameFirstAndLastNameExistOnlyOnce(Member memberToMatch)
     {
        return allMembers.stream()
                 .filter(member ->
@@ -25,7 +25,7 @@ public class MemberService {
     public void add (Member newMember)
     {
         // Find if a "Matching" Member is present
-        if (!memberWithSameFirstAndLastNameExist(newMember)) {
+        if (!memberWithSameFirstAndLastNameExistOnlyOnce(newMember)) {
             // If not yet there, add to list
             allMembers.add(newMember);
         }

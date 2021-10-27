@@ -46,4 +46,5 @@ public class MemberServiceTests {
         ArrayList<Member> allMembers = ms.retrieveAllMembers();
         assertThat(allMembers.size()).isEqualTo(1);
     }
+
 }
