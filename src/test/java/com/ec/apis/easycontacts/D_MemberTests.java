@@ -34,7 +34,7 @@ public class D_MemberTests {
     public void NumberOfContactPersonsIsFour()
     {
         int maxNumberOfContactPersons = _member.getMaxContactPersons();
-        assertThat(_member.getContactPersons().length).isEqualTo(maxNumberOfContactPersons);
+        assertThat(maxNumberOfContactPersons).isEqualTo(4);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class D_MemberTests {
         Member contact = new Member("Parent 1");
 
         _member.addContact(contact);
-        assertThat(_member.getContactPersons()[0].getFirstName()).isEqualTo("Parent 1");
+        assertThat(_member.getContactPersons().get(0).getFirstName()).isEqualTo("Parent 1");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class D_MemberTests {
 
         int maxNumberOfContactPersons = _member.getMaxContactPersons();
 
-        assertThat(_member.getContactPersons()[maxNumberOfContactPersons-1].getFirstName())
+        assertThat(_member.getContactPersons().get(maxNumberOfContactPersons-1).getFirstName())
                 .isEqualTo("Parent " + maxNumberOfContactPersons);
     }
 }

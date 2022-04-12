@@ -3,8 +3,10 @@ package com.ec.apis.easycontacts.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyToOne;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,11 @@ import java.util.List;
  * Private details like adresses, e-mail, phone numbers are linked tot the MemberContacts (parents of the pupils)
  *
  */
+@Entity
 public class Member {
+
+    @Id
+    private int memberID;
 
     // Using features of the Lombok library
     // https://projectlombok.org/features/GetterSetter
@@ -40,20 +46,24 @@ public class Member {
     // Members & Contact details can be added through Dependency Injection
 
     @Getter
+    @OneToMany
     // Up to 4 contact members can be added, for each contact
     // In a school setting, these can be the parents
-    private Member[] contactPersons = new Member[MAX_CONTACT_PERSONS];
+   // private Member[] contactPersons = new Member[MAX_CONTACT_PERSONS];
+    private List<Member> contactPersons = new ArrayList<>();
 
 
     @Getter
+    @OneToOne
     // Same MemberContactDetails can be shared between multiple members
     private MemberContactDetails contactData = null;
 
     @Getter
     @Setter
+    @OneToMany
     // A contact person can be contact person of more members
     // e.g. parent of children in different class groups.
-    private ArrayList<Member> contactPersonOf = new ArrayList<>();
+    private List<Member> contactPersonOf = new ArrayList<>();
 
     // When missing, JSON deserialization is not working (Needs c'tor with empty params)
     public Member() {
@@ -63,21 +73,11 @@ public class Member {
         firstName = inputFirstName;
     }
 
-    private int findIndexWithEmptyContactSlot() {
-        int idx = 0;
-
-        while (contactPersons[idx] != null)
-            idx++;
-
-        return idx;
-    }
-
     public void addContact(Member parent) {
-        int index = findIndexWithEmptyContactSlot();
 
-        if (index < MAX_CONTACT_PERSONS) {
-            contactPersons[index] = parent;
-        }
+       if (contactPersons.size() < MAX_CONTACT_PERSONS) {
+            contactPersons.add(parent);
+       }
     }
 
     public int getMaxContactPersons() {
