@@ -4,8 +4,10 @@
     <persistence-unit name="H2_InMemory_PersistenceUnit" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-
-
+        <!-- Entity classes -->
+        <!--         <class>domain.Member</class>
+        <class>Adress</class>
+        <class>MemberContactDetails</class> -->
         <properties>
             <property name="hibernate.connection.url" value="jdbc:h2:mem:memberTest"/>
             <property name="hibernate.connection.driver_class" value="org.h2.Driver" />
