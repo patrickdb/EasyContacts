@@ -7,3 +7,4 @@ Dev Environment
 * Postman 9.0.5
 * IntelliJ 2021.2.2
 * JUnit 5.7.2
+* Vue.JS 3.2.13
