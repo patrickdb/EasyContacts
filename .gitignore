@@ -56,3 +56,11 @@ build/
 ### VS Code ###
 .vscode/
 
+### Vuejs ###
+# Recommended template: Node.gitignore
+
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
